@@ -43,3 +43,34 @@ Each device that appears in the following table consists of its name plus a numb
 |Water Heater           |waterHeater     |`bool` state             |binary                                                                        |
 |Switch - Phone charger |switch0         |`bool` state             |binary                                                                        |
 |Switch - Coffee machine|switch1         |`bool` state             |"                                                                             |
+
+## Scenario
+Because this is a simulation, we had to create a scenario based on the life of an imaginary person, John. <br>
+John works on weekdays. More specifically:
+* He wakes up at 07:30
+* Eats breakfast at 08:00
+* Works from 09:00 to 17:00
+* Takes a shower at 17:30
+* Eats dinner at 20:00
+* Sleeps at 24:00
+
+On the weekends he has a more relaxed schedule.
+* He wakes up at 09:00
+* He sleeps at 02:00
+
+John, on a daily basis has some demands for this smart home system. More specifically:
+* He wants the Water heater to start boiling water at 17:00
+* He wants the vacuum to work Monday - Thursday - Friday from 10:00 to 12:00
+* He wants his phone to get charged from 03:30 to 06:30
+* He wants to have his coffee ready by 07:45
+* He wants the living room lights to be turned on when its getting dark and he enters the appartment
+* He wants door/window openings to be logged to the database
+* He wants lights to be turned on if motion is detected and the sun is setting
+
+Also in case of an emegerncy, he wants to be notified from a bot.
+* Fire
+* Burglary
+* When he forgets the lights on and he is not home
+* Possible malfunction of any device in the smart system
+
+Based on the above a script was created, that simulates John's life for a period of approximately one month. 
