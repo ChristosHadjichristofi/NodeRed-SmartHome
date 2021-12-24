@@ -30,6 +30,7 @@ Each device that appears in the following table consists of its name plus a numb
 |Window/Door magnet     |sensorMagnet2   |`bool` state             |"                                                                             |
 |Window/Door magnet     |sensorMagnet3   |`bool` state             |"                                                                             |
 |Alarm                  |alarm           |`bool` state             |binary                                                                        |
+|Siren                  |siren           |`bool` state             |binary                                                                        |
 |Thermostat             |thermostat      |`bool` state, `int` temp |state: binary, temp: range `10...35`                                          |
 |Lamp                   |lamp0           |`bool` state             |binary                                                                        |
 |Lamp                   |lamp1           |`bool` state             |"                                                                             |
