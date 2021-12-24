@@ -41,5 +41,5 @@ Each device that appears in the following table consists of its name plus a numb
 |Air-Conditioner        |ac0             |`bool` state, `int` temp |state: binary, temp: range `18...30`                                          |
 |Air-Conditioner        |ac1             |`bool` state, `int` temp |"                                                                             |
 |Water Heater           |waterHeater     |`bool` state             |binary                                                                        |
-|Switch                 |switch0         |`bool` state             |binary                                                                        |
-|Switch                 |switch1         |`bool` state             |"                                                                             |
+|Switch - Phone charger |switch0         |`bool` state             |binary                                                                        |
+|Switch - Coffee machine|switch1         |`bool` state             |"                                                                             |
