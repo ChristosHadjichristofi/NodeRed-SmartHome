@@ -60,7 +60,7 @@ On the weekends he has a more relaxed schedule.
 
 John, on a daily basis has some demands for this smart home system. More specifically:
 * He wants the Water heater to start boiling water at 17:00
-* He wants the vacuum to work Monday - Thursday - Friday from 10:00 to 12:00
+* He wants the vacuum to work Monday - Wednesday - Friday from 10:00 to 12:00
 * He wants his phone to get charged from 03:30 to 06:30
 * He wants to have his coffee ready by 07:45
 * He wants the living room lights to be turned on when its getting dark and he enters the appartment
