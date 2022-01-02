@@ -15,8 +15,10 @@ def main():
     # for every event
     for event in events[1:-1]:
         # set it to the right format in order to be able to convert it to json
-        if event[-1] == ',':     e = '{' + event[:] + '}'
-        else:                    e = '{' + event    + '}'
+        if event[-1] == ',':
+            e = '{' + event[:-1] + '}'
+        else:
+            e = '{' + event    + '}'
 
         # json.loads creates a dict if string is valid
         data = json.loads(e)
