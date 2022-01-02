@@ -1,0 +1,29 @@
+{
+    "name": "nodered-smarthome",
+    "version": "1.0.0",
+    "description": "## Devices Because this project will eventually be a simulation of a smart home system, we had to think of some devices that exist in a smart home system. After the placement in the house, we came up with different scenarios that trigger some specific flows in NodeRed.",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server",
+        "dev": "nodemon server",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ChristosHadjichristofi/NodeRed-SmartHome.git"
+    },
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ChristosHadjichristofi/NodeRed-SmartHome/issues"
+    },
+    "homepage": "https://github.com/ChristosHadjichristofi/NodeRed-SmartHome#readme",
+    "devDependencies": {
+        "nodemon": "^2.0.15",
+        "winston": "^3.3.3"
+    },
+    "dependencies": {
+        "express": "^4.17.2",
+        "kafkajs": "^1.15.0"
+    }
+}

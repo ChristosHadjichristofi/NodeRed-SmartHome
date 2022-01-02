@@ -1,0 +1,28 @@
+const partitionsPerDevice = {
+    sensorSmoke: 0,
+    sensonLight1: 1,
+    sensonLight4: 2,
+    sensonMotion1: 3,
+    sensonMotion4: 4,
+    sensorTemp0: 5,
+    sensorTemp1: 6,
+    sensorMagnet1: 7,
+    sensorMagnet2: 8,
+    sensorMagnet3: 9,
+    alarm: 10,
+    siren: 11,
+    thremostat: 12,
+    lamp0: 13,
+    lamp1: 14,
+    lamp2: 15,
+    lamp3: 16,
+    lamp4: 17,
+    vacuum: 18,
+    ac0: 19,
+    ac1: 20,
+    waterHeater: 21,
+    switch0: 22,
+    switch1: 23,
+};
+
+module.exports = { partitionsPerDevice };
