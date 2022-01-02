@@ -8,16 +8,14 @@ const kafka = new Kafka({
 
 const producer = kafka.producer();
 
-const produceToTopic = async (input, topic = 'node-red-events-v1') => {
+const produceToTopic = async (events, topic = 'smart-home-events') => {
     await producer.connect();
-    
-    // for (let device in input) {
-    //     await producer.send({
-    //         topic: topic,
-    //         messages: [{ key: device, value: JSON.stringify(input[device]) }],
-    //         partition: devices[device],
-    //     });
-    // }
+    for (let event in events) {
+        await producer.send({
+            topic: topic,
+            messages: [{ key: event, value: JSON.stringify(events[event]), partition: partitionsPerDevice[event] }],
+        });
+    }
 };
 
 module.exports = { produceToTopic };

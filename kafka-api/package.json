@@ -23,6 +23,7 @@
         "winston": "^3.3.3"
     },
     "dependencies": {
+        "cors": "^2.8.5",
         "express": "^4.17.2",
         "kafkajs": "^1.15.0"
     }
