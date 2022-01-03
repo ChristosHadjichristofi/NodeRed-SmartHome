@@ -8,13 +8,22 @@ const kafka = new Kafka({
 
 const producer = kafka.producer();
 
-const produceToTopic = async (events, topic = 'smart-home-events') => {
-    await producer.connect();
-    for (let event in events) {
-        await producer.send({
-            topic: topic,
-            messages: [{ key: event, value: JSON.stringify(events[event]), partition: partitionsPerDevice[event] }],
-        });
+const produceToTopic = async (events, topic) => {
+    try {
+        let splicedEvent;
+        await producer.connect();
+        for (let event in events) {
+            if (event === 'alarm' || event === 'sensorSmoke') splicedEvent = event;
+            else splicedEvent = event.slice(0, event.length - 1);
+
+            await producer.send({
+                topic: topic,
+                messages: [{ key: event, value: JSON.stringify(events[event]), partition: partitionsPerDevice[splicedEvent] }],
+            });
+        }
+        return 'OK';
+    } catch (err) {
+        return 'NOT OK';
     }
 };
 
