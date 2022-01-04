@@ -64,8 +64,8 @@ John, on a daily basis has some demands for this smart home system. More specifi
 * He wants his phone to get charged from 03:30 to 06:30
 * He wants to have his coffee ready by 07:45
 * He wants the living room lights to be turned on when its getting dark and he enters the appartment
+* He wants the balcony room lights to be turned on when its getting dark and motion is detected on the balcony 
 * He wants door/window openings to be logged to the database
-* He wants lights to be turned on if motion is detected and the sun is setting
 
 Also in case of an emegerncy, he wants to be notified from a bot.
 * Fire
