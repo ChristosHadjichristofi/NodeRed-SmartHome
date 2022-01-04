@@ -65,12 +65,16 @@ John, on a daily basis has some demands for this smart home system. More specifi
 * He wants to have his coffee ready by 07:45
 * He wants the living room lights to be turned on when its getting dark and he enters the appartment
 * He wants the balcony room lights to be turned on when its getting dark and motion is detected on the balcony 
+* He wants the lights in the bedroom, bathroom and kitchen to be switched off when he arms the alarm
+* He wants the thermostat to be set on when the temperature drops below 22 degrees
+* He wants the a/c in the bedroom to be turned on when the temperature rises above 29 degrees
+* He wants the a/c in the living room to be turned on when the temperature rises above 29 degrees
 * He wants door/window openings to be logged to the database
 
 Also in case of an emegerncy, he wants to be notified from a bot.
 * Fire
 * Burglary
 * When he forgets the lights on and he is not home
-* Possible malfunction of any device in the smart system
+* Possible malfunction of any temperature sensor in the smart system
 
-Based on the above a script was created, that simulates John's life for a period of approximately one month. 
+Based on the above a script was created, that simulates John's life for a period of a week. 
