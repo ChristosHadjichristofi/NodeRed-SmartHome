@@ -50,6 +50,7 @@ John works on weekdays. More specifically:
 * He wakes up at 07:30
 * Eats breakfast at 08:00
 * Works from 09:00 to 17:00
+* He arms the alarm before leaving the house and disarms the alarm when he returns
 * Takes a shower at 17:30
 * Eats dinner at 20:00
 * Sleeps at 24:00
@@ -76,5 +77,10 @@ Also in case of an emegerncy, he wants to be notified from a bot.
 * Burglary
 * When he forgets the lights on and he is not home
 * Possible malfunction of any temperature sensor in the smart system
+
+Unexpected events throughout the week
+* On Tuesday at 13:00 burglars broke into John's house using the door in the living room
+* On Friday at 20:00 there was a fire in John's kitchen
+* On Sunday at 16:00 the temperature sensor malfunctioned
 
 Based on the above a script was created, that simulates John's life for a period of a week. 
