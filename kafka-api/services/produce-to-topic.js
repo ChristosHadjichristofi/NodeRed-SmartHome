@@ -19,7 +19,6 @@ const produceToTopic = async ({ events, event_date }, topic) => {
                 data: events[event],
                 date: event_date,
             };
-            console.log(value);
             await producer.send({
                 topic: topic,
                 messages: [{ key: event, value: JSON.stringify(value), partition: partitionsPerDevice[splicedEvent] }],
