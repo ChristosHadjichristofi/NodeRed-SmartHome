@@ -77,7 +77,7 @@ def sensorLights(state): # light from 6:00 until 20:45 everyday
 def sensorMotion1(state): # Motion sensor in the living room can be triggered by John between 8:00 -8:30 and 17:30-00:00 on weekdays and between 9:00-24:00 on weekends
     state["sensorMotion1"]["status"] = 0
     if days.index(day) <= 4: 
-        if ((hour + mins/60) >= 8 and (hour + mins/60) <= 8.5 ):
+        if ((hour + mins/60) >= 8 and (hour + mins/60) < 8.5 ):
             state["sensorMotion1"]["status"] = int((random.randint(0, 100) > 50 ))
         elif ((hour + mins/60) >= 17.5):
             state["sensorMotion1"]["status"] = int((random.randint(0, 100) > 75 ))
@@ -88,7 +88,7 @@ def sensorMotion1(state): # Motion sensor in the living room can be triggered by
 def sensorMotion4(state): # Motion sensor in the balcony can be triggered by John between 7:30-8:30 and 17:30-00:00 on weekdays and between 9:00-24:00 on weekends
     state["sensorMotion4"]["status"] = 0
     if days.index(day) <= 4: 
-        if ((hour + mins/60) >= 7.5 and (hour + mins/60) <= 8.5 ):
+        if ((hour + mins/60) >= 7.5 and (hour + mins/60) < 8.5 ):
             state["sensorMotion4"]["status"] = int((random.randint(0, 100) > 95 ))
         elif ((hour + mins/60) >= 17.5):
             state["sensorMotion4"]["status"] = int((random.randint(0, 100) > 85 ))
@@ -116,7 +116,7 @@ def sensorTemp(state): # temperature changes and the warmest time of the day is 
 def sensorMagnet0(state): # Bedroom door opens when John wakes up or goes to bed
     state["sensorMagnet0"]["status"] = 0
     if days.index(day) <= 4: 
-        if ((hour + mins/60) >= 7.5 and (hour + mins/60) <= 8.5 ):
+        if ((hour + mins/60) >= 7.5 and (hour + mins/60) < 8.5 ):
             state["sensorMagnet0"]["status"] = int((random.randint(0, 100) > 50 ))
     else:
         if ((hour + mins/60) >= 9 and (hour + mins/60) <= 10 ):
@@ -140,7 +140,7 @@ def sensorMagnet1(state): # Living room door opens when John leaves and returns 
 def sensorMagnet2(state): # Kitchen door opens when John is eating
     state["sensorMagnet2"]["status"] = 0
     if days.index(day) <= 4: 
-        if ((hour + mins/60) >= 7.5 and (hour + mins/60) <= 8.5 ):
+        if ((hour + mins/60) >= 7.5 and (hour + mins/60) < 8.5 ):
             state["sensorMagnet2"]["status"] = int((random.randint(0, 100) > 50 ))
         elif ((hour + mins/60) >= 17.5):
             state["sensorMagnet2"]["status"] = int((random.randint(0, 100) > 85 ))
@@ -153,7 +153,7 @@ def sensorMagnet2(state): # Kitchen door opens when John is eating
 def sensorMagnet3(state): # Bathroom door opens when John is at home
     state["sensorMagnet3"]["status"] = 0
     if days.index(day) <= 4: 
-        if ((hour + mins/60) >= 7.5 and (hour + mins/60) <= 8.5 ):
+        if ((hour + mins/60) >= 7.5 and (hour + mins/60) < 8.5 ):
             state["sensorMagnet3"]["status"] = int((random.randint(0, 100) > 50 ))
         elif ((hour + mins/60) >= 17.5):
             state["sensorMagnet3"]["status"] = int((random.randint(0, 100) > 90 ))
