@@ -19,15 +19,15 @@ days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 #          "sensorMagnet1" : { "status" : 0 }, # done
 #          "sensorMagnet2" : { "status" : 0 }, # done
 #          "sensorMagnet3" : { "status" : 0 }, # done
-#          "siren" : { "status" : 0 }, # tbd
 #          "alarm" : { "status" : 0 }, # done
-#          "thermostat" : { "status" : 0, "temp" : 0 }, # output only
+#          "siren" : { "status" : 0 }, # tbd
 #          "lamp0" : { "status" : 0 }, # tbd
 #          "lamp1" : { "status" : 0 }, # tbd
 #          "lamp2" : { "status" : 0 }, # tbd
 #          "lamp3" : { "status" : 0 }, # tbd
 #          "lamp4" : { "status" : 0 }, # tbd
 #          "vacuum" : { "status" : 0 }, # output only
+#          "thermostat" : { "status" : 0, "temp" : 0 }, # output only
 #          "ac0" : { "status" : 0, "temp" : 0 }, # output only
 #          "ac1" : { "status" : 0, "temp" : 0 }, # output only
 #          "waterHeater" : { "status" : 0 }, # output only
@@ -108,6 +108,9 @@ def sensorTemp(state): # temperature changes and the warmest time of the day is 
         state["sensorTemp1"]["temp"] = int(20 - 0.75*( abs(hour - 13.5 + mins/60))) + days.index(day) 
     state["sensorTemp0"]["tempDif"] = state["sensorTemp0"]["temp"] - prev_temp_0
     state["sensorTemp1"]["tempDif"] = state["sensorTemp1"]["temp"] - prev_temp_1
+    if((days.index(day) == 0) and hour==0 and mins==0):
+        state["sensorTemp0"]["tempDif"] = 0
+        state["sensorTemp1"]["tempDif"] = 0
 
 
 def sensorMagnet0(state): # Bedroom door opens when John wakes up or goes to bed
