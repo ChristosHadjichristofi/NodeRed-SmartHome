@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { produceToTopic } = require('../../services/produce-to-topic');
 
-const topic = 'smart-home';
+const topic = 'smart-home-v2';
 
 router.post('/', async (req, res) => {
     try {

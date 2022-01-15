@@ -3,9 +3,9 @@ import json
 import time
 
 # kafka producer
-URL = "http://localhost:3000/events"
+URL = "http://localhost:8765/events"
 # how many minutes the simulator waits in order to send again a new request
-MINS_INTERVAL = 3
+MINS_INTERVAL = 0.004
 
 def main():
     # read all simulation data
