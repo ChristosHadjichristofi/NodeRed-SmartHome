@@ -1,0 +1,1470 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_MYSQL",
+      "label": "MySQL",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "mysql",
+      "pluginName": "MySQL"
+    }
+  ],
+  "__elements": [],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "8.3.3"
+    },
+    {
+      "type": "datasource",
+      "id": "mysql",
+      "name": "MySQL",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "select ms.name ,count(*)\nfrom alarm a\nleft join motion_sensor ms \non a.date_time = ms.date_time \nwhere a.status  = 1 and ms.status = 1 \nGROUP BY ms.name\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "air_condition",
+          "timeColumn": "date_time",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Number of possible breaches per Motion Sensor",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 15,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "select ms.name ,count(*)\nfrom alarm a\nleft join magnet_sensor ms \non a.date_time = ms.date_time \nwhere a.status  = 1 and ms.status = 1 \nGROUP BY ms.name\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "air_condition",
+          "timeColumn": "date_time",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Number of possible breaches per Magnet Sensor",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 1,
+        "y": 8
+      },
+      "id": 16,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "select name,count(name) from smoke_sensor where status = 1 group by name;\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "air_condition",
+          "timeColumn": "date_time",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Number of Smoke Detections",
+      "type": "stat"
+    },
+    {
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "line+area"
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 22
+              },
+              {
+                "color": "red",
+                "value": 29
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "status"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "continuous-BlYlRd"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "temp"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#75a2e5",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Bedroom"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  temp AS \"Bedroom\"\nFROM temp_sensor\nWHERE\n  name = 'sensorTemp0'\nORDER BY date_time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "temp"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "Bedroom"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "temp_sensor",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "name",
+                "=",
+                "'sensorTemp0'"
+              ],
+              "type": "expression"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  temp AS \"Living Room\"\nFROM temp_sensor\nWHERE\n  name = 'sensorTemp1'\nORDER BY date_time",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "temp"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "Living Room"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "temp_sensor",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "name",
+                "=",
+                "'sensorTemp1'"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "title": "Temperature Sensors",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 1,
+            "drawStyle": "line",
+            "fillOpacity": 6,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 6,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "line+area"
+            }
+          },
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              },
+              {
+                "color": "super-light-yellow",
+                "value": 100
+              },
+              {
+                "color": "dark-orange",
+                "value": 500
+              }
+            ]
+          },
+          "unit": "lumens"
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Bedroom"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  lm AS \"Bedroom\"\nFROM light_sensor\nWHERE\n  name = 'sensorLight0'\nORDER BY date_time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "temp"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "temp"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "temp_sensor",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "name",
+                "=",
+                "'sensorTemp1'"
+              ],
+              "type": "expression"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  lm AS \"Living Room\"\nFROM light_sensor\nWHERE\n  name = 'sensorLight1'\nORDER BY date_time",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "temp_dif"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "temp_sensor",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "",
+              "params": [
+                "value",
+                "=",
+                "value"
+              ],
+              "type": "expression"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  lm AS \"Balcony\"\nFROM light_sensor\nWHERE\n  name = 'sensorLight4'\nORDER BY date_time",
+          "refId": "C",
+          "select": [
+            [
+              {
+                "params": [
+                  "temp_dif"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "temp_sensor",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "",
+              "params": [
+                "value",
+                "=",
+                "value"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "title": "Light Sensors",
+      "type": "timeseries"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 25
+      },
+      "id": 12,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  id\nFROM air_condition\nWHERE\n  $__timeFilter(date_time)\nORDER BY date_time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "air_condition",
+          "timeColumn": "date_time",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Panel Title",
+      "type": "timeseries"
+    },
+    {
+      "description": "TODO",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "Water Heater"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 25
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  status AS \"Water Heater\"\nFROM water_heater\nORDER BY date_time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "status"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "Water Heater"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "water_heater",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  status AS \"Phone Charger\"\nFROM switch\nwhere name = \"switch0\"\nORDER BY date_time",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "temp"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "Living Room"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "temp_sensor",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "name",
+                "=",
+                "'sensorTemp1'"
+              ],
+              "type": "expression"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  status AS \"Coffee Maker\"\nFROM switch\nwhere name = \"switch1\"\nORDER BY date_time",
+          "refId": "C",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "air_condition",
+          "timeColumn": "date_time",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  status AS \"Vacuum Cleaner\"\nFROM vacuum\nORDER BY date_time",
+          "refId": "D",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "air_condition",
+          "timeColumn": "date_time",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Other Devices",
+      "type": "timeseries"
+    },
+    {
+      "description": "The Lamps Panel displays the latest  status of each lamp",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 1,
+                  "text": "OFF"
+                },
+                "1": {
+                  "index": 0,
+                  "text": "ON"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#505050",
+                "value": null
+              },
+              {
+                "color": "#42bc35b8",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 33
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  status as \"Bedroom Lamp -\",\n  description\nFROM lamp\nWHERE\n  name = 'lamp0'\nORDER BY date_time DESC \nLIMIT 1",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "status"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "lamp",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "name",
+                "=",
+                "'lamp0'"
+              ],
+              "type": "expression"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  status as \"Living room Lamp -\",\n  description\nFROM lamp\nWHERE\n  name = 'lamp1'\nORDER BY date_time DESC \nLIMIT 1",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "air_condition",
+          "timeColumn": "date_time",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  status as \"Kitchen Lamp -\",\n  description\nFROM lamp\nWHERE\n  name = 'lamp2'\nORDER BY date_time DESC \nLIMIT 1",
+          "refId": "C",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "air_condition",
+          "timeColumn": "date_time",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  status as \"Bathroom Lamp -\",\n  description\nFROM lamp\nWHERE\n  name = 'lamp3'\nORDER BY date_time DESC \nLIMIT 1",
+          "refId": "D",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "air_condition",
+          "timeColumn": "date_time",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  status as \"Balcony Lamp -\",\n  description\nFROM lamp\nWHERE\n  name = 'lamp4'\nORDER BY date_time DESC \nLIMIT 1",
+          "refId": "E",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "air_condition",
+          "timeColumn": "date_time",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Lamps ",
+      "type": "stat"
+    },
+    {
+      "description": "Latest alarm status",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "OFF"
+                },
+                "1": {
+                  "index": 1,
+                  "text": "ON"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#505050",
+                "value": null
+              },
+              {
+                "color": "#42bc35b8",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bool_on_off"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 34
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "titleSize": 50,
+          "valueSize": 50
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  status \nFROM alarm\nORDER BY date_time DESC \nLIMIT 1",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "status"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "lamp",
+          "timeColumn": "date_time",
+          "timeColumnType": "datetime",
+          "where": [
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "name",
+                "=",
+                "'lamp0'"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "title": "Alarm",
+      "type": "stat"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 34,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2022-01-14T04:21:13.629Z",
+    "to": "2022-01-27T03:52:54.123Z"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Smart Home",
+  "uid": "XCDsB11nz",
+  "version": 38,
+  "weekStart": ""
+}
