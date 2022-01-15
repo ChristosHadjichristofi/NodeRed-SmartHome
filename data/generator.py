@@ -199,13 +199,13 @@ for day in days:
     for hour in range(24):
         for mins in range(0,60,15):
             if(hour<10):
-                print('"',day, '-0', hour,':', sep='', end='')
+                print('"2022-01-',days.index(day)+17, ' 0', hour,':', sep='', end='')
             else:
-                print('"',day, '-', hour,':', sep='', end='')
+                print('"2022-01-',days.index(day)+17, ' ', hour,':', sep='', end='')
             if(mins==0):
-                print('0',mins,'":',sep='',end='')
+                print('0',mins,':00":',sep='',end='')
             else:
-                print(mins,'":',sep='',end='')
+                print(mins,':00":',sep='',end='')
 
             sensorLights(state)
             sensorMotion1(state)
