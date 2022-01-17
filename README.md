@@ -31,7 +31,7 @@
 The following installation instructions are intended for Linux Distros. If you want to Install it in any other OS, you should know that not everything that follows will work.
 
 #### Clone Project
-1. `git clone` the project
+1. ```git clone``` the project
 2. Open the folder that you git cloned and navigate to `kafka-api` folder
 3. Open a terminal and execute `npm install`
 
