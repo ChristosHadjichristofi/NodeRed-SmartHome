@@ -4,22 +4,35 @@
 * [Apache Kafka](https://kafka.apache.org/) as message broker
 * [Node-Red](https://nodered.org/) to handle the logic of our smart home
 * [NodeJS](https://nodejs.org/en/) and [ExpressJS](https://expressjs.com/) to create a server and specifically a route to handle all incoming requests from the smart home's devices
-* [NVM](https://github.com/nvm-sh/nvm) as the Node Version Manager (so as we can have different versions of node in our pc)
-* [Python3](https://www.python.org/downloads/) to create dummy data that represent the data from the smart home sensors and to create a simulation script which makes many api calls to the express server
 * [MySQL](https://www.mysql.com/) as the database
-* [Docker](https://www.docker.com/) to create a container for the database (here we could even create container for everything, but this would require a connection bridge)
 * [Grafana](https://grafana.com/) as a simple user dashboard where the user (smart home owner) can see many details and monitor the IOT devices
 * [Telegram](https://telegram.org/) where we created a bot that will notify us (more info in upcoming sections)
+* [Python3](https://www.python.org/downloads/) to create dummy data that represent the data from the smart home sensors and to create a simulation script which makes many api calls to the express server
+
+## Tools
+* [Docker](https://www.docker.com/) to create a container for the database (here we could even create container for everything, but this would require a connection bridge)
+* [NVM](https://github.com/nvm-sh/nvm) as the Node Version Manager (so as we can have different versions of node in our pc)
 * [FlyWay](https://flywaydb.org/) as a database version control. Used for matters of ease when developing the system
+* [GitHub](https://github.com/) in order to keep track the versions of our code and for better collaboration
 
 ## Installation
+The following installation instructions are intended for Linux Distros. If you want to Install it in any other OS, you should know that not everything that follows will work.
+
+#### Clone Project
+1. `git clone` the project
+2. Open the folder that you git cloned and navigate to `kafka-api` folder
+3. Open a terminal and execute `npm install`
+
+#### NodeJS
 1. Download NVM ```curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash```
 2. Install NodeJS ```nvm install 16```
-3. Download Apache Kafka ```https://dlcdn.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz``` and then unzip it to the desired folder i.e Home (cd ~/Kafka)
-4. Navigate to ```cd ~/Kafka``` and create 2 folders, ```data``` and ```logs```
-5. Open ```vim ~/Kafka/kafka_2.13-3.0.0/config/zookeeper.properties```, and change ```dataDir``` to the directory where ```data``` folder is. In our case ```dataDir=~/Kafka/data```
-6. Open ```vim ~/Kafka/kafka_2.13-3.0.0/config/server.properties```, and change ```log.dirs``` to the directory where ```logs``` folder is. In our case ```log.dirs=~/Kafka/logs```
-7. Create aliases to use kafka easier. Navigate to ```cd ~``` and ```vim .bashrc```. Find the ```#some more aliases``` comment and below add
+
+#### Apache Kafka
+1. Download Apache Kafka ```https://dlcdn.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz``` and then unzip it to the desired folder i.e Home (`cd ~/Kafka`)
+2. Navigate to ```cd ~/Kafka``` and create 2 folders, ```data``` and ```logs```
+3. Open ```vim ~/Kafka/kafka_2.13-3.0.0/config/zookeeper.properties```, and change ```dataDir``` to the directory where ```data``` folder is. In our case ```dataDir=~/Kafka/data```
+4. Open ```vim ~/Kafka/kafka_2.13-3.0.0/config/server.properties```, and change ```log.dirs``` to the directory where ```logs``` folder is. In our case ```log.dirs=~/Kafka/logs```
+5. Create aliases to use kafka easier. Navigate to ```cd ~``` and ```vim .bashrc```. Find the ```#some more aliases``` comment and below add
 ```
 #kafka-aliases
 #start zookeeper
@@ -36,21 +49,55 @@ alias delete-topic="bin/kafka-topics.sh --bootstrap-server localhost:9092 --dele
 #grafana
 alias grafana="sudo systemctl start grafana-server"
 ```
-8. Open a terminal and navigate to ```cd ~/Kafka/kafka_2.13-3.0.0```. Execute the command ```zookeeper```
-9. Open a new terminal and navigate again to ```cd ~/Kafka/kafka_2.13-3.0.0```. Execute the command ```kafka``` as soon as ```zookeeper``` is finished
-10. Open a new terminal and navigate again to ```cd ~/Kafka/kafka_2.13-3.0.0```. Execute the command ```create-topic [name] --partitions [number] --replication-factor 1```. In our case the ```name``` is `smart-home` and `number` is `6`
-11. Git clone this repository
-12. Navigate to `kafka-api` open a terminal and execute the command `npm install`
-13. Install docker with `sudo snap install docker`
-14. Open a new terminal and execute the command `docker run -p 3311:3306 --name smart-home-db -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7`. This will create a container for our database which will be created in the following steps
-15. Use a database management tool (in our case we used dbeaver which you can install by executing `sudo snap install dbeaver-ce`) in order to create a new database. The name of the database for this project is `smart_home`
-16. In the database management tool open an SQL Script and paste inside the content of `sql/V1__initial.sql` which is again located in the project folder
-17. After the above step you should have several tables in your database
-18. Install Node-Red. Open a new terminal and execute the command `sudo snap install node-red`
-19. In the previous terminal execute the command `node-red.desktop-launch`. This will start the node-red
-20. Open a browser and navigate to `http://localhost:1880/`. Here you should see node-red running
-21. From the top right corner press the hamburger menu and choose `import`. Choose `select a file to import` and locate `node-red-flow.json` which is in the folder which you git cloned in step 11
-22. 
+6. Open a terminal and navigate to ```cd ~/Kafka/kafka_2.13-3.0.0```. Execute the command ```zookeeper```
+7. Open a new terminal and navigate again to ```cd ~/Kafka/kafka_2.13-3.0.0```. Execute the command ```kafka``` as soon as ```zookeeper``` is finished
+8. Open a new terminal and navigate again to ```cd ~/Kafka/kafka_2.13-3.0.0```. Execute the command ```create-topic [name] --partitions [number] --replication-factor 1```. In our case the ```name``` is `smart-home` and `number` is `6`
+
+#### Docker
+1. Install docker with `sudo snap install docker`
+
+#### MySQL - Dbeaver - Flyway
+1. Open a new terminal and execute the command `docker run -p 3311:3306 --name smart-home-db -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7`. This will create a container for our database which will be created in the following steps
+2. Use a database management tool (in our case we used dbeaver which you can install by executing `sudo snap install dbeaver-ce`) in order to create a new database. The name of the database for this project is `smart_home`
+3. Install flyway `wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/8.4.1/flyway-commandline-8.4.1-linux-x64.tar.gz | tar xvz && sudo ln -s pwd/flyway-8.4.1/flyway /usr/local/bin`
+4. Create the tables needed with Flyway `flyway -user=[user] -password=[password] -url=jdbc:mysql://localhost:[port]/[database_name]`. In our case `user=root`, `password=root`, `port=3311`, `database_name=smart_home`.
+5. Open the project folder, where you can see the `sql` folder. Open a terminal and execute `flyway -user=root -password=root -url=jdbc:mysql://localhost:3311/smart_home migrate`
+
+**Here you can use `clean` to clear the database and `migrate` to create it again.**
+
+#### Node-Red
+1. Install Node-Red. Open a new terminal and execute the command `sudo snap install node-red`
+2. In the previous terminal execute the command `node-red.desktop-launch`. This will start the node-red
+3. Open a browser and navigate to `http://localhost:1880/`. Here you should see node-red running
+4. From the top right corner press the hamburger menu and choose `import`. Choose `select a file to import` and locate `node-red-flow.json` which is in the folder which you git cloned
+
+#### Node-Red Dependencies
+1. `node-red-contrib-chatbot` for the Bot
+2. `node-red-contrib-kafka-manager` for Kafka
+3. `node-red-node-mysql` for MySQL
+
+#### Grafana
+1. Install Grafana 
+```
+wget https://dl.grafana.com/enterprise/release/grafana-enterprise_8.3.3_amd64.deb
+sudo dpkg -i grafana-enterprise_8.3.3_amd64.deb
+```
+2. If you followed the instructions, when we were setting up Kafka we set up some aliases. One of those aliases is for grafana. So now in order to start grafana you can simply open a terminal and execute `grafana`
+3. Open a browser and head over to `http://localhost:3000/`. You should see the login screen of grafana
+4. Enter the default `user` and `password` which are both the word `admin`
+5. Import the `json` file that is the dashboard. This file is located in the project folder and it is called `grafana-dashboard.json`. To import it, there is a plus icon on your left. Follow the instructions and the dashboard will be imported
+6. If everything went well you will see the dashboard in the `General Tab` (if you ofcourse imported the dashboard in that tab and not in a new one that you created)
+
+#### Telegram
+1. Download Telegram `snap install telegram-desktop`
+2. We followed [this](https://sendpulse.com/knowledge-base/chatbot/create-telegram-chatbot) tutorial to create our bot
+3. After that we created a group conversation (which includes all the family members that will get notified)
+4. We used the bot's `token` which you'll find by following the tutorial we mentioned in step 2 or [here](https://github.com/guidone/node-red-contrib-chatbot/wiki/Telegram-Receiver-node)
+
+#### Python3
+We only use python3 for the creation of the simulation data and the simulation script. These scripts are located in the project folder and specifically in `data` folder.
+
+You should have Python3 preinstalled if you work on Ubuntu, in case you don't you should check it out.
 
 ## Devices
 Because this project will eventually be a simulation of a smart home system, we had to think of some devices that exist in a smart home system. After the placement in the house, we came up with different scenarios that trigger some specific flows in NodeRed.
@@ -64,7 +111,6 @@ The simulation consists of:
 |2      |Kitchen    |
 |3      |Bathroom   |
 |4      |Balcony    |
-|5      |Alarm      |
 
 Each device that appears in the following table consists of its name plus a number. The number is in which room this device belongs. If no number exists, there's only one device of that kind in the house.
 
