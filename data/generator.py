@@ -1,3 +1,22 @@
+# DEVICES
+#
+# Input Devices:
+#   sensorSmoke
+#   sensorLight1, sensorLight0, sensorLight4
+#   sensorMotion1, sensorMotion4
+#   sensorTemp0, sensorTemp1
+#   sensorMagnet0, sensorMagnet1, sensorMagnet2, sensorMagnet3
+#   alarm
+#
+# Output devices:
+#   siren
+#   lamp0, lamp1, lamp2, lamp3, lamp4
+#   thermostat
+#   ac0, ac1
+#   waterHeater 
+#   vacuum 
+#   switch0, switch1 
+
 import sys
 import json
 import random
@@ -5,34 +24,8 @@ import random
 f = open("events.json", "w")
 sys.stdout = f
 
-days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
-# state = {"sensorSmoke" : {"status" : 0 }, # done
-#          "sensorLight0" : { "lm" : 0 }, # done
-#          "sensorLight1" : { "lm" : 0 }, # done
-#          "sensorLight4" : { "lm" : 0 }, # done
-#          "sensorMotion1" : { "status" : 0 }, # done
-#          "sensorMotion4" : { "status" : 0 }, # done
-#          "sensorTemp0" : { "temp" : 0, "tempDif" : 0 }, # done
-#          "sensorTemp1" : { "temp" : 0, "tempDif" : 0 }, # done
-#          "sensorMagnet0" : { "status" : 0 }, # done
-#          "sensorMagnet1" : { "status" : 0 }, # done
-#          "sensorMagnet2" : { "status" : 0 }, # done
-#          "sensorMagnet3" : { "status" : 0 }, # done
-#          "alarm" : { "status" : 0 }, # done
-#          "siren" : { "status" : 0 }, # tbd
-#          "lamp0" : { "status" : 0 }, # tbd
-#          "lamp1" : { "status" : 0 }, # tbd
-#          "lamp2" : { "status" : 0 }, # tbd
-#          "lamp3" : { "status" : 0 }, # tbd
-#          "lamp4" : { "status" : 0 }, # tbd
-#          "vacuum" : { "status" : 0 }, # output only
-#          "thermostat" : { "status" : 0, "temp" : 0 }, # output only
-#          "ac0" : { "status" : 0, "temp" : 0 }, # output only
-#          "ac1" : { "status" : 0, "temp" : 0 }, # output only
-#          "waterHeater" : { "status" : 0 }, # output only
-#          "switch0" : { "status" : 0 }, # output only
-#          "switch1" : { "status" : 0 }} # output only
+days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 state = {"sensorSmoke" : {"status" : 0 }, 
          "sensorLight0" : { "lm" : 0 }, 
@@ -63,6 +56,7 @@ def print_state(state):
         print('},')
     return
 
+
 def sensorLights(state): # light from 6:00 until 20:45 everyday
     if(hour <= 5 or hour >= 21):
         state["sensorLight0"]["lm"] = 0
@@ -74,6 +68,7 @@ def sensorLights(state): # light from 6:00 until 20:45 everyday
         state["sensorLight4"]["lm"] = 1000 - 130*( abs(hour - 13.5 + mins/60) )
     return
 
+
 def sensorMotion1(state): # Motion sensor in the living room can be triggered by John between 8:00 -8:30 and 17:30-00:00 on weekdays and between 9:00-24:00 on weekends
     state["sensorMotion1"]["status"] = 0
     if days.index(day) <= 4: 
@@ -84,6 +79,7 @@ def sensorMotion1(state): # Motion sensor in the living room can be triggered by
     else:
         if ((hour + mins/60) >= 9):
             state["sensorMotion1"]["status"] = int((random.randint(0, 100) > 65 ))
+
 
 def sensorMotion4(state): # Motion sensor in the balcony can be triggered by John between 7:30-8:30 and 17:30-00:00 on weekdays and between 9:00-24:00 on weekends
     state["sensorMotion4"]["status"] = 0
