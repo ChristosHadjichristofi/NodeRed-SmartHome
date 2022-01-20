@@ -45,7 +45,6 @@ state = {"sensorSmoke" : {"status" : 0 },
 def print_state(state):
     print('{',end=' ')
     for k,v in state.items():
-        # if(k == "sensorMagnet0"):
         print(json.dumps(k),' : ',sep='', end='')
         print(json.dumps(v), end='')
         if(k!='alarm'):
