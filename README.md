@@ -241,4 +241,9 @@ Unexpected events throughout the week
 * On Friday at 20:00 there was a fire in John's kitchen
 * On Sunday at 16:00 the temperature sensor malfunctioned
 
-Based on the above a script was created, that simulates John's life for a period of a week. 
+Based on the above a script was created, that simulates John's life for a period of a week.
+
+## Diagrams
+![component-diagram](https://user-images.githubusercontent.com/40044042/150546525-d16995e9-e85c-4ea4-a758-4dfed5dbe118.png)
+![deployment-diagram](https://user-images.githubusercontent.com/40044042/150546537-5c48367b-93b9-4595-8bc6-9c82d27e6a12.png)
+
