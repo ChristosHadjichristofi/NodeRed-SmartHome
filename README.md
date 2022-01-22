@@ -214,7 +214,7 @@ John works on weekdays. More specifically:
 * Eats dinner at 20:00
 * Sleeps at 24:00
 
-On the weekends he has a more relaxed schedule.
+On the weekends he has a more relaxed schedule:
 * He wakes up at 09:00
 * He sleeps at 02:00
 
@@ -231,17 +231,17 @@ John, on a daily basis has some demands for this smart home system. More specifi
 * He wants the a/c in the living room to be turned on when the temperature rises above 29 degrees
 * He wants door/window openings to be logged to the database
 
-Also in case of an emegerncy, he wants to be notified from a bot.
+Also in case of an emegerncy, he wants to be notified from a bot. Such emergencies are:
 * Fire
 * Burglary
 * Possible malfunction of any temperature sensor in the smart system
 
-Unexpected events throughout the week
+Based on the above a script was created, that simulates John's life for a period of a week.
+Unexpected events throughout the week:
 * On Tuesday at 13:00 burglars broke into John's house using the door in the living room
 * On Friday at 20:00 there was a fire in John's kitchen
 * On Sunday at 16:00 a temperature sensor malfunctioned
 
-Based on the above a script was created, that simulates John's life for a period of a week.
 
 ## Diagrams
 ![component-diagram](https://user-images.githubusercontent.com/40044042/150546525-d16995e9-e85c-4ea4-a758-4dfed5dbe118.png)
