@@ -220,7 +220,7 @@ On the weekends he has a more relaxed schedule.
 
 John, on a daily basis has some demands for this smart home system. More specifically:
 * He wants the Water heater to start boiling water at 17:00
-* He wants the vacuum to work Monday - Wednesday - Friday from 10:00 to 12:00
+* He wants the vacuum to clean every Monday - Wednesday - Friday from 10:00 to 12:00
 * He wants his phone to get charged from 03:30 to 06:30
 * He wants to have his coffee ready by 07:45
 * He wants the living room lights to be turned on when its getting dark and he enters the appartment
@@ -239,7 +239,7 @@ Also in case of an emegerncy, he wants to be notified from a bot.
 Unexpected events throughout the week
 * On Tuesday at 13:00 burglars broke into John's house using the door in the living room
 * On Friday at 20:00 there was a fire in John's kitchen
-* On Sunday at 16:00 the temperature sensor malfunctioned
+* On Sunday at 16:00 a temperature sensor malfunctioned
 
 Based on the above a script was created, that simulates John's life for a period of a week.
 
