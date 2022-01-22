@@ -224,7 +224,7 @@ John, on a daily basis has some demands for this smart home system. More specifi
 * He wants his phone to get charged from 03:30 to 06:30
 * He wants to have his coffee ready by 07:45
 * He wants the living room lights to be turned on when its getting dark and he enters the appartment
-* He wants the balcony room lights to be turned on when its getting dark and motion is detected on the balcony 
+* He wants the balcony lights to be turned on when its getting dark and motion is detected on the balcony 
 * He wants the lights in the bedroom, bathroom and kitchen to be switched off when he arms the alarm
 * He wants the thermostat to be set on when the temperature drops below 22 degrees
 * He wants the a/c in the bedroom to be turned on when the temperature rises above 29 degrees
