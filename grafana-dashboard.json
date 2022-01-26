@@ -55,6 +55,12 @@
     },
     {
       "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    },
+    {
+      "type": "panel",
       "id": "timeseries",
       "name": "Time series",
       "version": ""
@@ -89,7 +95,7 @@
     {
       "description": "",
       "gridPos": {
-        "h": 3,
+        "h": 7,
         "w": 3,
         "x": 0,
         "y": 0
@@ -161,12 +167,112 @@
       "type": "grafana-clock-panel"
     },
     {
+      "gridPos": {
+        "h": 7,
+        "w": 21,
+        "x": 3,
+        "y": 0
+      },
+      "id": 45,
+      "options": {
+        "content": "<div id=\"ww_1d52adbce735d\" v='1.20' loc='id' a='{\"t\":\"responsive\",\"lang\":\"en\",\"ids\":[\"wl989\"],\"cl_bkg\":\"#FFFFFF00\",\"cl_font\":\"rgba(255,255,255,1)\",\"cl_cloud\":\"#d4d4d4\",\"cl_persp\":\"#2196F3\",\"cl_sun\":\"#FFC107\",\"cl_moon\":\"#FFC107\",\"cl_thund\":\"#FF5722\",\"sl_tof\":\"7\",\"sl_sot\":\"celsius\",\"sl_ics\":\"one_a\",\"font\":\"Arial\",\"cl_odd\":\"#00000000\"}'>Weather for the Following Location: <a href=\"https://2ua.org/grc/athens/map/\" id=\"ww_1d52adbce735d_u\" target=\"_blank\">Athens, Greece</a></div><script async src=\"https://srv2.weatherwidget.org/js/?id=ww_1d52adbce735d\"></script>",
+        "mode": "html"
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  id\nFROM air_condition\nWHERE\n  $__timeFilter(date_time)\nORDER BY date_time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "air_condition",
+          "timeColumn": "date_time",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Weather Forecast",
+      "type": "text"
+    },
+    {
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 49,
+      "options": {
+        "content": "<div style=\"gap:10px;padding:0px 50px;display:flex;height:auto;flex-direction:row;align-items:baseline;justify-content:space-between;\">\n  <div style=\"display:flex;flex-direction:column;gap:2px;align-items:center;\">\n      <p style=\"font-size:16px;font-weight:500\">Bedroom</p>\n      <div id=\"bedroom\">\n        <button id=\"0\" style=\"font-size:16px;font-weight:500;border:inherit;border-radius:6px;background-color: rgba(130, 250, 180,1); color: black;padding:auto;width:100px;\" onclick=\"handleclick(this)\">ON</button>\n        <button style=\"font-size:16px;font-weight:500;border:inherit;border-radius:6px;background-color: rgba(250, 10, 120,0.8); color: black;padding:auto;width:100px;\" onclick=\"handleclick(this)\">OFF</button>\n      </div>\n  </div>\n <div style=\"display:flex;flex-direction:column;gap:2px;align-items:center;\">\n      <p style=\"font-size:16px;font-weight:500\">Living Room</p>\n      <div id=\"living-room\">\n        <button id=\"1\" style=\"font-size:16px;font-weight:500;border:inherit;border-radius:6px;background-color: rgba(130, 250, 180,1); color: black;padding:auto;width:100px;\" onclick=\"handleclick(this)\">ON</button>\n        <button style=\"font-size:16px;font-weight:500;border:inherit;border-radius:6px;background-color: rgba(250, 10, 120,0.8); color: black;padding:auto;width:100px;\" onclick=\"handleclick(this)\">OFF</button>\n      </div>\n  </div>\n   <div style=\"display:flex;flex-direction:column;gap:2px;align-items:center;\">\n      <p style=\"font-size:16px;font-weight:500\">Kitchen</p>\n      <div id=\"kitchen\" >\n        <button id=\"2\" style=\"font-size:16px;font-weight:500;border:inherit;border-radius:6px;background-color: rgba(130, 250, 180,1); color: black;padding:auto;width:100px;\" onclick=\"handleclick(this)\">ON</button>\n        <button style=\"font-size:16px;font-weight:500;border:inherit;border-radius:6px;background-color: rgba(250, 10, 120,0.8); color: black;padding:auto;width:100px;\" onclick=\"handleclick(this)\">OFF</button>\n      </div>\n  </div>\n   <div style=\"display:flex;flex-direction:column;gap:2px;align-items:center;\">\n      <p style=\"font-size:16px;font-weight:500\">Bathroom</p>\n      <div id=\"bathroom\" >\n        <button id=\"3\" style=\"font-size:16px;font-weight:500;border:inherit;border-radius:6px;background-color: rgba(130, 250, 180,1); color: black;padding:auto;width:100px;\" onclick=\"handleclick(this)\">ON</button>\n        <button style=\"font-size:16px;font-weight:500;border:inherit;border-radius:6px;background-color: rgba(250, 10, 120,0.8); color: black;padding:auto;width:100px;\" onclick=\"handleclick(this)\">OFF</button>\n      </div>\n  </div>\n  <div style=\"display:flex;flex-direction:column;gap:2px;align-items:center;\">\n      <p style=\"font-size:16px;font-weight:500\">Balcony</p>\n      <div id=\"balcony\" >\n        <button id=\"4\" style=\"font-size:16px;font-weight:500;border:inherit;border-radius:6px;background-color: rgba(130, 250, 180,1); color: black;padding:auto;width:100px;\" onclick=\"handleclick(this)\">ON</button>\n        <button style=\"font-size:16px;font-weight:500;border:inherit;border-radius:6px;background-color: rgba(250, 10, 120,0.8); color: black;padding:auto;width:100px;\" onclick=\"handleclick(this)\">OFF</button>\n      </div>\n  </div>\n</div>\n\n<script>\n   function handleclick(btn) {\n    const action = btn.innerText\n    let roomId;\n    switch(btn.parentElement.id){\n      case 'bedroom':\n        roomId = 0;\n        break;\n      case 'living-room':\n        roomId = 1;\n        break;\n      case 'kitchen':\n        roomId = 2;\n        break;\n      case 'bathroom':\n        roomId = 3;\n        break;\n      case 'balcony':\n        roomId = 4;\n        break;\n      default:\n        break;\n    }\n    const data = JSON.stringify({action:action,roomId:roomId})\n    fetch(\"http://localhost:8765/lamp\",{\n      method: \"post\",\n      body:data,\n      headers:{\"Content-Type\":\"application/json\"}\n    })\n    .then(response => response.json())\n    .then(data => console.log(data))\n  }\n</script>",
+        "mode": "markdown"
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "mysql",
+            "uid": "${DS_MYSQL}"
+          },
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  date_time AS \"time\",\n  id\nFROM air_condition\nWHERE\n  $__timeFilter(date_time)\nORDER BY date_time",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "air_condition",
+          "timeColumn": "date_time",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Lights Handler",
+      "type": "text"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 3
+        "y": 13
       },
       "id": 37,
       "panels": [],
@@ -216,7 +322,7 @@
         "h": 3,
         "w": 12,
         "x": 0,
-        "y": 4
+        "y": 14
       },
       "id": 8,
       "options": {
@@ -329,7 +435,7 @@
         "h": 11,
         "w": 12,
         "x": 12,
-        "y": 4
+        "y": 14
       },
       "id": 15,
       "options": {
@@ -414,7 +520,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 7
+        "y": 17
       },
       "id": 16,
       "options": {
@@ -513,7 +619,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 7
+        "y": 17
       },
       "id": 14,
       "options": {
@@ -578,7 +684,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 25
       },
       "id": 31,
       "panels": [],
@@ -628,7 +734,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 16
+        "y": 26
       },
       "id": 5,
       "options": {
@@ -907,7 +1013,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 26
       },
       "id": 3,
       "options": {
@@ -1049,7 +1155,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 24
+        "y": 34
       },
       "id": 33,
       "panels": [],
@@ -1099,7 +1205,7 @@
         "h": 5,
         "w": 12,
         "x": 0,
-        "y": 25
+        "y": 35
       },
       "id": 26,
       "options": {
@@ -1343,7 +1449,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 25
+        "y": 35
       },
       "id": 2,
       "options": {
@@ -1483,7 +1589,7 @@
         "h": 5,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 40
       },
       "id": 18,
       "options": {
@@ -1672,7 +1778,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 45
       },
       "id": 29,
       "options": {
@@ -1796,7 +1902,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 42
+        "y": 52
       },
       "id": 35,
       "panels": [],
@@ -1846,7 +1952,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 43
+        "y": 53
       },
       "id": 19,
       "options": {
@@ -2088,7 +2194,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 43
+        "y": 53
       },
       "id": 17,
       "options": {
@@ -2261,7 +2367,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 50
+        "y": 60
       },
       "id": 41,
       "panels": [],
@@ -2292,7 +2398,7 @@
         "h": 13,
         "w": 24,
         "x": 0,
-        "y": 51
+        "y": 61
       },
       "id": 39,
       "options": {
@@ -2414,7 +2520,7 @@
       "type": "marcusolsson-calendar-panel"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 34,
   "style": "dark",
   "tags": [],
@@ -2429,6 +2535,6 @@
   "timezone": "",
   "title": "Smart Home",
   "uid": "XCDsB11nz",
-  "version": 13,
+  "version": 29,
   "weekStart": ""
 }
