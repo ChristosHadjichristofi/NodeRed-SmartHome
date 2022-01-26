@@ -132,6 +132,10 @@ node-red-contrib-kafka-manager
 ```
 node-red-node-mysql
 ```
+4. For Node-Red Dashboard
+```
+node-red-dashboard
+```
 
 #### Grafana
 1. Install Grafana 
