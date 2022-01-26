@@ -29,7 +29,7 @@
 
 ## Kafka
 We used Apache Kafka as a middleware for the communication between the smart-home events and node-red. Kafka uses topics to store incoming events.
-In order to achieve that, we created three topics. Our house consists of six major device categories. The name of each device is the concatination of the device type and the room that it is located in. The smart-home events are stored in the smart-home topic with device type as key and some other device properties as  value.
+In order to achieve that, we created three topics. Our house consists of six major device categories. The name of each device is the concatenation of the device type and the room that it is located in. The smart-home events are stored in the smart-home topic with device type as key and some other device properties as  value.
 By default Kafka stores events in topics using a Round-Robin partitioner. However, we decided to do it manually by producing each device event to specific partition according to its device category. We did this because the node-red-contrib-kafka library, which is used to connect Apache Kafka and Node-red, enabled us to consume messages from a certain partition of a topic. Of course, if this was a real large scale project, we would let Kafka handle the partitioning automatically. We also have two additional topics, general-events and lamps. In the first one, we produce messages that are triggered by node-red logic and more specifically events created by output devices(e.g siren). In the second one, each time the user turns on/off a lamp, a message is produced to the certain topic containing the action as value and room as key.   
 
 ## Installation
